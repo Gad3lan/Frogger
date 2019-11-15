@@ -6,7 +6,7 @@ import gameCommons.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
 
-public class Car {
+/*public class Car {
 	private Game game;
 	private Case leftPosition;
 	private boolean leftToRight;
@@ -21,7 +21,7 @@ public class Car {
 	
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
-	private void addToGraphics() {
+	/*private void addToGraphics() {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
 			if (this.leftToRight){
@@ -32,4 +32,4 @@ public class Car {
 		}
 	}
 
-}
+}*/

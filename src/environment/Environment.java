@@ -6,8 +6,8 @@ import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
 
-public class Environment implements IEnvironment {
+/*public class Environment implements IEnvironment {
 		
 	//TODO
 
-}
+}*/

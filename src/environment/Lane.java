@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import gameCommons.Case;
 import gameCommons.Game;
 
-public class Lane {
+/*public class Lane {
 	private Game game;
 	private int ord;
 	private int speed;
@@ -19,14 +19,14 @@ public class Lane {
 
 		// TODO
 
-		// Toutes les voitures se déplacent d'une case au bout d'un nombre "tic
-		// d'horloge" égal à leur vitesse
-		// Notez que cette méthode est appelée à chaque tic d'horloge
+		// Toutes les voitures se dï¿½placent d'une case au bout d'un nombre "tic
+		// d'horloge" ï¿½gal ï¿½ leur vitesse
+		// Notez que cette mï¿½thode est appelï¿½e ï¿½ chaque tic d'horloge
 
 		// Les voitures doivent etre ajoutes a l interface graphique meme quand
 		// elle ne bougent pas
 
-		// A chaque tic d'horloge, une voiture peut être ajoutée
+		// A chaque tic d'horloge, une voiture peut ï¿½tre ajoutï¿½e
 
 	}
 
@@ -37,10 +37,10 @@ public class Lane {
 	 */
 
 	/**
-	 * Ajoute une voiture au début de la voie avec probabilité égale à la
-	 * densité, si la première case de la voie est vide
+	 * Ajoute une voiture au dï¿½but de la voie avec probabilitï¿½ ï¿½gale ï¿½ la
+	 * densitï¿½, si la premiï¿½re case de la voie est vide
 	 */
-	private void mayAddCar() {
+	/*private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
@@ -62,4 +62,4 @@ public class Lane {
 			return new Case(game.width, ord);
 	}
 
-}
+}*/
