@@ -15,7 +15,7 @@ public interface IFrog {
 	public Direction getDirection();
 	
 	/**
-	 * D�place la grenouille dans la direction donnée et teste la fin de partie
+	 * Déplace la grenouille dans la direction donnée et teste la fin de partie
 	 * @param key
 	 */
 	public void move(Direction key);
