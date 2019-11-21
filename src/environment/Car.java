@@ -19,7 +19,7 @@ public class Car {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
-		length = game.randomGen.nextInt(6);
+		length = game.randomGen.nextInt(3) + 1;
 		addToGraphics();
 	}
 	
@@ -32,12 +32,20 @@ public class Car {
 		}
 	}
 
+	public int getLeftPos() {
+		return leftPosition.absc;
+	}
+
+	public int getRightPos() {
+		return leftPosition.absc + length;
+	}
+
 	public boolean isOnScreen() {
 		return(this.leftPosition.absc < -6 || this.leftPosition.absc > game.width+6);
 	}
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
-	private void addToGraphics() {
+	public void addToGraphics() {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
 			if (this.leftToRight){

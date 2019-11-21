@@ -15,6 +15,7 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
+	private int frameCount;
 
 	// Lien aux objets utilisés
 	private IEnvironment environment;
@@ -77,7 +78,7 @@ public class Game {
 	 */
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("You Lose!");
+			graphic.endGameScreen("You Lose!\n" + frameCount/10.0 + "s");
 			return true;
 		}
 		return false;
@@ -91,7 +92,7 @@ public class Game {
 	 */
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
-			graphic.endGameScreen("You win");
+			graphic.endGameScreen("You win\n" + frameCount/10.0 + "s");
 			return true;
 		}
 		return false;
@@ -102,11 +103,14 @@ public class Game {
 	 * partie.
 	 */
 	public void update() {
-		testLose();
-		testWin();
 		graphic.clear();
-		environment.update();
-		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+		if (!testLose() && !testWin()) {
+			environment.update();
+			float time = frameCount / 10.0f;
+			this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+			this.graphic.timer(time);
+			frameCount++;
+		}
 	}
 
 }

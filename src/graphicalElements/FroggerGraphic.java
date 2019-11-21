@@ -17,6 +17,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	private int height;
 	private IFrog frog;
 	private JFrame frame;
+	private float time;
 
 	public FroggerGraphic(int width, int height) {
 		this.width = width;
@@ -41,6 +42,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 			g.setColor(e.color);
 			g.fillRect(pixelByCase * e.absc, pixelByCase * (height - 1 - e.ord), pixelByCase, pixelByCase - 1);
 		}
+		g.drawString(Float.toString(this.time), width-5, height-5);
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -75,6 +77,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	public void setFrog(IFrog frog) {
 		this.frog = frog;
+	}
+
+	public void timer(float time) {
+		this.time = time;
 	}
 
 	public void endGameScreen(String s) {

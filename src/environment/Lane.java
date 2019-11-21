@@ -1,6 +1,7 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import gameCommons.Case;
 import gameCommons.Game;
@@ -14,12 +15,25 @@ public class Lane {
 	private double density;
 	private int frameCount;
 
-	Lane(int ord) {
+	Lane(Game game, int ord, boolean isEmptyLane) {
+		this.game = game;
 		this.ord = ord;
-		this.speed = game.randomGen.nextInt(4);
-		this.leftToRight = game.randomGen.nextBoolean();
-		this.density = game.randomGen.nextDouble()*game.defaultDensity;
-		this.frameCount = 0;
+		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
+		this.leftToRight = this.game.randomGen.nextBoolean();
+		if(isEmptyLane) {
+			this.density = this.game.defaultDensity;//game.randomGen.nextDouble()*game.defaultDensity;
+		} else {
+			this.density = 0;
+		}
+		this.frameCount = 1;
+		for (int i = 0; i < this.game.width; i++) {
+			Case c = new Case(i, ord);
+			if (isSafe(c)) {
+				if (game.randomGen.nextDouble() < density) {
+					cars.add(new Car(game, c, leftToRight));
+				}
+			}
+		}
 	}
 
 	public void update() {
@@ -34,20 +48,33 @@ public class Lane {
 		// elle ne bougent pas
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
+		for (Car c : cars) {
+				c.addToGraphics();
+		}
 		if (frameCount%speed == 0) {
 			for (Car c : cars) {
 				c.move();
 			}
-			for (int i = 0; i < cars.size(); i++) {
-				if (!cars.get(i).isOnScreen()) {
-					cars.remove(i);
+			if (cars.size() > 10) {
+				for (int i = 0; i < cars.size(); i++) {
+					if (!cars.get(i).isOnScreen()) {
+						cars.remove(i);
+					}
 				}
 			}
 		}
+		frameCount++;
 		mayAddCar();
 	}
 
-	// TODO : ajout de methodes
+	public boolean isSafe(Case c) {
+		for (Car car : cars) {
+			if (car.getLeftPos() <= c.absc && car.getRightPos() >= c.absc) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/*
 	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
