@@ -5,8 +5,6 @@ import gameCommons.Direction;
 import gameCommons.Game;
 import gameCommons.IFrog;
 
-import static gameCommons.Direction.up;
-
 public class Frog implements IFrog {
 
     private Game game;
@@ -15,7 +13,7 @@ public class Frog implements IFrog {
 
     public Frog(Game game) {
         this.game = game;
-        this.dir = up;
+        this.dir = Direction.up;
         this.pos = new Case(game.width / 2, 0);
     }
 
