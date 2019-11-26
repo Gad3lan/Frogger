@@ -10,7 +10,7 @@ import static gameCommons.Direction.up;
 public class Frog implements IFrog {
 
     private Game game;
-    private Case pos;
+    public Case pos;
     private Direction dir;
 
     public Frog(Game game) {
@@ -49,5 +49,13 @@ public class Frog implements IFrog {
                 break;
         }
         this.dir = key;
+    }
+
+    public void riverMove(boolean leftToRight) {
+        if (leftToRight) {
+            this.pos = new Case(this.pos.absc + 1, this.pos.ord);
+        } else {
+            this.pos = new Case(this.pos.absc - 1, this.pos.ord);
+        }
     }
 }

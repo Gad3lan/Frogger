@@ -4,17 +4,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import frog.Frog;
 import gameCommons.Case;
 import gameCommons.Game;
+import gameCommons.IFrog;
 import graphicalElements.Element;
 
 public class Lane {
 	private Game game;
-	private int ord;
+	public int ord;
 	private int speed;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
-	private boolean isRiver;
+	public boolean isRiver;
 	private double density;
 	private int frameCount;
 
@@ -63,7 +65,7 @@ public class Lane {
 			}
 		}
 		for (Car c : cars) {
-				c.addToGraphics();
+			c.addToGraphics();
 		}
 		if (frameCount%speed == 0) {
 			for (Car c : cars) {
@@ -92,6 +94,13 @@ public class Lane {
 		if (isRiver) return false;
 		return true;
 	}
+
+	public void moveFrog(IFrog frog) {
+		if (isSafe(frog.getPosition()) && frameCount%speed == 1) {
+			frog.riverMove(leftToRight);
+		}
+	}
+
 
 	/*
 	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 

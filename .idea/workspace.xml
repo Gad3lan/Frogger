@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="fe74d294-e3db-4e5b-b5ba-6085ffac64b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frogger/frog/Frog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/frog/Frog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frogger/graphicalElements/FroggerGraphic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/graphicalElements/FroggerGraphic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Frogger/graphicalElements/IFroggerGraphics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/graphicalElements/IFroggerGraphics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environment/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/environment/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environment/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/environment/Environment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/environment/Lane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/environment/Lane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frog/Frog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frog/Frog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameCommons/IFrog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameCommons/IFrog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameCommons/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameCommons/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574330329614</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Debut fonctions rivière">
+      <created>1574420166647</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574420166648</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +114,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="Classe car complete, lane en cours" />
     <MESSAGE value="Partie 2 finie, timer aussi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Partie 2 finie, timer aussi" />
+    <MESSAGE value="Debut fonctions rivière" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debut fonctions rivière" />
   </component>
 </project>

@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
+import gameCommons.IFrog;
 
 public class Environment implements IEnvironment {
 	private Game game;
 	private ArrayList<Lane> lanes;
+	private IFrog frog;
 
-	public Environment(Game game) {
+	public Environment(Game game, IFrog frog) {
 		this.game = game;
+		this.frog = frog;
 		lanes = new ArrayList<Lane>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
@@ -34,6 +37,9 @@ public class Environment implements IEnvironment {
 
 	public void update() {
 		for (Lane lane : lanes) {
+			if (frog.getPosition().ord == lane.ord && lane.isRiver) {
+				lane.moveFrog(frog);
+			}
 			lane.update();
 		}
 	}

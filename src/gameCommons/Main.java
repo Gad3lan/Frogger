@@ -30,7 +30,7 @@ public class Main {
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Création et liaison de l'environnement
-		IEnvironment env = new Environment(game);
+		IEnvironment env = new Environment(game, frog);
 		game.setEnvironment(env);
 				
 		//Boucle principale : l'environnement s'actualise tous les tempo milisecondes

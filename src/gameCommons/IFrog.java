@@ -13,11 +13,16 @@ public interface IFrog {
 	 * @return
 	 */
 	public Direction getDirection();
-	
+
 	/**
 	 * Déplace la grenouille dans la direction donnée et teste la fin de partie
 	 * @param key
 	 */
 	public void move(Direction key);
 
+	/**
+	 * Déplace la grenouile dans la direction du tronc
+	 * @param leftToRight
+	 */
+	public void riverMove(boolean leftToRight);
 }
