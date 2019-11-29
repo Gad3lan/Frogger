@@ -107,7 +107,7 @@ public class Game {
 		if (!testLose() && !testWin()) {
 			environment.update();
 			float time = frameCount / 10.0f;
-			this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+			this.graphic.add(new Element(frog.getPosition(), 6));
 			this.graphic.timer(time);
 			frameCount++;
 		}

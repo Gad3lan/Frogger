@@ -1,7 +1,6 @@
 package environment;
 
 import java.awt.Color;
-import java.util.Random;
 
 import gameCommons.Case;
 import gameCommons.Game;
@@ -12,14 +11,26 @@ public class Car {
 	private Case leftPosition;
 	private boolean leftToRight;
 	private int length;
-	private final Color colorLtR = Color.BLACK;
-	private final Color colorRtL = Color.DARK_GRAY;
+	private int spriteID;
 
 	Car(Game game, Case leftPosition, boolean leftToRight) {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
-		length = game.randomGen.nextInt(3) + 1;
+		length = game.randomGen.nextInt(2) + 1;
+		if (this.leftToRight) {
+			if (this.length == 1) {
+				this.spriteID = game.randomGen.nextInt(2) + 2;
+			} else {
+				this.spriteID = 5;
+			}
+		} else {
+			if (this.length == 1) {
+				this.spriteID = game.randomGen.nextInt(2);
+			} else {
+				this.spriteID = 4;
+			}
+		}
 		addToGraphics();
 	}
 	
@@ -46,14 +57,7 @@ public class Car {
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	public void addToGraphics() {
-		for (int i = 0; i < length; i++) {
-			Color color = colorRtL;
-			if (this.leftToRight){
-				color = colorLtR;
-			}
-			game.getGraphic()
-					.add(new Element(leftPosition.absc + i, leftPosition.ord, color));
-		}
+		game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
 	}
 
 }

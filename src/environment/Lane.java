@@ -1,14 +1,12 @@
 package environment;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
-
-import frog.Frog;
 import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IFrog;
 import graphicalElements.Element;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class Lane {
 	private Game game;
