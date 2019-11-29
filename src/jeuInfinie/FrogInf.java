@@ -1,20 +1,15 @@
 package jeuInfinie;
 
-import environment.Environment;
-import environment.Lane;
 import frog.Frog;
 import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
-import gameCommons.IEnvironment;
+import gameCommons.IFrog;
 
-public class FrogInf extends Frog {
+public class FrogInf extends Frog implements IFrogInf {
 
-    private EnvInf environment;
-
-    public FrogInf(Game game, EnvInf environment) {
+    public FrogInf(Game game) {
         super(game);
-        this.environment = environment;
     }
 
     public void move(Direction key) {
@@ -22,8 +17,6 @@ public class FrogInf extends Frog {
             case up:
                 if (pos.ord < game.height/2){
                     pos = new Case(pos.absc, pos.ord + 1);
-                }else{
-                    this.environment.downEnvironment();
                 }
                 break;
             case down:

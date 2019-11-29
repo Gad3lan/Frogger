@@ -30,13 +30,14 @@ public class Main {
 		//Création de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Création et liason de la grenouille
-		//IFrog frog = new Frog(game); ----------------------------------mis de cote pour laisse place au jeu inf
-		IFrogInf frogI = new Frog(game);
-		game.setFrog(frog);
-		graphic.setFrog(frog);
+		//IFrog frog = new Frog(game); ------------------mis de cote pour laisser place au jeu inf----------------------
+		IFrogInf frogInf = new FrogInf(game);
+		game.setFrog(frogInf);
+		graphic.setFrog(frogInf);
 		//Création et liaison de l'environnement
-		IEnvironment env = new Environment(game, frog);
-		game.setEnvironment(env);
+		//IEnvironment env = new Environment(game, frog); mis de cote pour laisser place au jeu inf---------------------
+		IEnvInf envInf = new EnvInf(game, frogInf);
+		game.setEnvironment(envInf);
 				
 		//Boucle principale : l'environnement s'actualise tous les tempo milisecondes
 		Timer timer = new Timer(tempo, new ActionListener() {
