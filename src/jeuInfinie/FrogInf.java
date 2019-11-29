@@ -1,35 +1,30 @@
-package frog;
+package jeuInfinie;
 
+import environment.Environment;
+import environment.Lane;
+import frog.Frog;
 import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
-import gameCommons.IFrog;
+import gameCommons.IEnvironment;
 
-public class Frog implements IFrog {
+public class FrogInf extends Frog {
 
-    protected Game game;
-    public Case pos;
-    protected Direction dir;
+    private EnvInf environment;
 
-    public Frog(Game game) {
-        this.game = game;
-        this.dir = Direction.up;
-        this.pos = new Case(game.width / 2, 0);
-    }
-
-    public Case getPosition() {
-        return this.pos;
-    }
-
-    public Direction getDirection() {
-        return this.dir;
+    public FrogInf(Game game, EnvInf environment) {
+        super(game);
+        this.environment = environment;
     }
 
     public void move(Direction key) {
         switch (key) {
             case up:
-                if (pos.ord < game.height - 1)
+                if (pos.ord < game.height/2){
                     pos = new Case(pos.absc, pos.ord + 1);
+                }else{
+                    this.environment.downEnvironment();
+                }
                 break;
             case down:
                 if (pos.ord > 0)
@@ -48,12 +43,6 @@ public class Frog implements IFrog {
         }
         this.dir = key;
     }
-
-    public void riverMove(boolean leftToRight) {
-        if (leftToRight) {
-            this.pos = new Case(this.pos.absc + 1, this.pos.ord);
-        } else {
-            this.pos = new Case(this.pos.absc - 1, this.pos.ord);
-        }
-    }
 }
+
+

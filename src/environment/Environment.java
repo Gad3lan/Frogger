@@ -8,9 +8,9 @@ import gameCommons.IEnvironment;
 import gameCommons.IFrog;
 
 public class Environment implements IEnvironment {
-	private Game game;
-	private ArrayList<Lane> lanes;
-	private IFrog frog;
+	protected Game game;
+	protected ArrayList<Lane> lanes;
+	protected IFrog frog;
 
 	public Environment(Game game, IFrog frog) {
 		this.game = game;

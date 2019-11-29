@@ -60,4 +60,8 @@ public class Car {
 		game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
 	}
 
+	public void downCar(){
+		this.leftPosition = new Case(this.leftPosition.absc, this.leftPosition.ord-1);
+	}
+
 }

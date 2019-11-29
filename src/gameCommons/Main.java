@@ -7,8 +7,12 @@ import javax.swing.Timer;
 
 import frog.Frog;
 import environment.Environment;
+import jeuInfinie.FrogInf;
+import jeuInfinie.EnvInf;
 import graphicalElements.FroggerGraphic;
 import graphicalElements.IFroggerGraphics;
+import jeuInfinie.IFrogInf;
+import jeuInfinie.IEnvInf;
 
 public class Main {
 
@@ -26,7 +30,8 @@ public class Main {
 		//Création de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Création et liason de la grenouille
-		IFrog frog = new Frog(game);
+		//IFrog frog = new Frog(game); ----------------------------------mis de cote pour laisse place au jeu inf
+		IFrogInf frogI = new Frog(game);
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Création et liaison de l'environnement

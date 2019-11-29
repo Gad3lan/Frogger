@@ -2,6 +2,7 @@ package environment;
 
 import gameCommons.Case;
 import gameCommons.Game;
+import environment.Car;
 import gameCommons.IFrog;
 import graphicalElements.Element;
 
@@ -18,7 +19,7 @@ public class Lane {
 	private double density;
 	private int frameCount;
 
-	Lane(Game game, int ord, boolean isEmptyLane) {
+	public Lane(Game game, int ord, boolean isEmptyLane) {
 		this.game = game;
 		this.ord = ord;
 		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
@@ -96,6 +97,13 @@ public class Lane {
 	public void moveFrog(IFrog frog) {
 		if (isSafe(frog.getPosition()) && frameCount%speed == 1) {
 			frog.riverMove(leftToRight);
+		}
+	}
+
+	public void downLanes(){
+		this.ord--;
+		for(Car c: cars){
+			c.downCar();
 		}
 	}
 
