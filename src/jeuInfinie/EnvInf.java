@@ -1,5 +1,6 @@
 package jeuInfinie;
 
+import jeuInfinie.FrogInf;
 import environment.Environment;
 import environment.Lane;
 import gameCommons.Game;
@@ -27,9 +28,7 @@ public class EnvInf extends Environment implements IEnvInf {
         isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
         lanes.add(new Lane(this.game, game.height, isEmptyLane));
         lanes.remove(0);
-        System.out.print("!" + (game.height-1) + "\n");//---------------------------
         for (Lane lane : lanes) {
-            System.out.print("!");//------------------------------------
             lane.downLanes();
         }
     }
@@ -41,7 +40,8 @@ public class EnvInf extends Environment implements IEnvInf {
             }
             lane.update();
         }
-        if(this.dir == Direction.up && this.frog.getPosition().ord >= game.height/2) {
+        if(FrogInf.lEnvDoitIlDescendre == true){
+            FrogInf.lEnvDoitIlDescendre = false;
             downEnvironment();
         }
     }

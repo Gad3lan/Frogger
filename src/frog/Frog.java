@@ -50,9 +50,9 @@ public class Frog implements IFrog {
     }
 
     public void riverMove(boolean leftToRight) {
-        if (leftToRight) {
+        if (leftToRight && pos.absc < game.width - 1) {
             this.pos = new Case(this.pos.absc + 1, this.pos.ord);
-        } else {
+        } else if (pos.absc > 0) {
             this.pos = new Case(this.pos.absc - 1, this.pos.ord);
         }
     }
