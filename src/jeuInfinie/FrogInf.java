@@ -7,7 +7,7 @@ import gameCommons.Game;
 
 public class FrogInf extends Frog implements IFrogInf {
 
-    public static boolean lEnvDoitIlDescendre = false;
+    public static boolean needToMoveDown = false;
 
     public FrogInf(Game game) {
         super(game);
@@ -19,7 +19,7 @@ public class FrogInf extends Frog implements IFrogInf {
                 if (pos.ord < game.height/2){
                     pos = new Case(pos.absc, pos.ord + 1);
                 }else{
-                    lEnvDoitIlDescendre = true;
+                    needToMoveDown = true;
                 }
                 break;
             case down:

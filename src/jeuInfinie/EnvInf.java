@@ -1,6 +1,6 @@
 package jeuInfinie;
 
-import jeuInfinie.FrogInf;
+import gameCommons.IFrog;
 import environment.Environment;
 import environment.Lane;
 import gameCommons.Game;
@@ -12,7 +12,7 @@ public class EnvInf extends Environment implements IEnvInf {
 
     protected Direction dir;
 
-    public EnvInf(Game game, IFrogInf frog) {
+    public EnvInf(Game game, IFrog frog) {
         super(game, frog);
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < game.height; i++) {
@@ -35,13 +35,15 @@ public class EnvInf extends Environment implements IEnvInf {
 
     public void update() {
         for (Lane lane : lanes) {
-            if (frog.getPosition().ord == lane.ord && lane.isRiver) {
-                lane.moveFrog(frog);
+            for (IFrog frog : frogs) {
+                if (frog.getPosition().ord == lane.ord && lane.isRiver) {
+                    lane.moveFrog(frog);
+                }
             }
             lane.update();
         }
-        if(FrogInf.lEnvDoitIlDescendre == true){
-            FrogInf.lEnvDoitIlDescendre = false;
+        if(FrogInf.needToMoveDown){
+            FrogInf.needToMoveDown = false;
             downEnvironment();
         }
     }

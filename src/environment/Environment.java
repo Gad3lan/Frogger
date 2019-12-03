@@ -10,11 +10,12 @@ import gameCommons.IFrog;
 public class Environment implements IEnvironment {
 	protected Game game;
 	protected ArrayList<Lane> lanes;
-	protected IFrog frog;
+	protected ArrayList<IFrog> frogs;
 
 	public Environment(Game game, IFrog frog) {
 		this.game = game;
-		this.frog = frog;
+		this.frogs = new ArrayList<IFrog>();
+		frogs.add(frog);
 		lanes = new ArrayList<Lane>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
@@ -33,8 +34,10 @@ public class Environment implements IEnvironment {
 
 	public void update() {
 		for (Lane lane : lanes) {
-			if (frog.getPosition().ord == lane.ord && lane.isRiver) {
-				lane.moveFrog(frog);
+			for (IFrog frog : frogs) {
+				if (frog.getPosition().ord == lane.ord && lane.isRiver) {
+					lane.moveFrog(frog);
+				}
 			}
 			lane.update();
 		}

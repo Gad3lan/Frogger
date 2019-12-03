@@ -1,5 +1,6 @@
 package gameCommons;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import graphicalElements.Element;
@@ -18,7 +19,7 @@ public class Game {
 
 	// Lien aux objets utilisés
 	private IEnvironment environment;
-	private IFrog frog;
+	private ArrayList<IFrog> frogs;
 	private IFroggerGraphics graphic;
 
 	/**
@@ -41,6 +42,7 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.frogs = new ArrayList<IFrog>();
 	}
 
 	/**
@@ -49,7 +51,7 @@ public class Game {
 	 * @param frog l'objet frog
 	 */
 	public void setFrog(IFrog frog) {
-		this.frog = frog;
+		this.frogs.add(frog);
 	}
 
 	/**
@@ -76,9 +78,11 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("You Lose!\n" + frameCount/10.0 + "s");
-			return true;
+		for (IFrog frog : frogs) {
+			if (!environment.isSafe(frog.getPosition())) {
+				graphic.endGameScreen("You Lose!\n" + frameCount / 10.0 + "s");
+				return true;
+			}
 		}
 		return false;
 	}
@@ -90,9 +94,11 @@ public class Game {
 	 * @return true si la partie est gagnée
 	 */
 	public boolean testWin() {
-		if (environment.isWinningPosition(frog.getPosition())) {
-			graphic.endGameScreen("You win\n" + frameCount/10.0 + "s");
-			return true;
+		for (IFrog frog : frogs) {
+			if (environment.isWinningPosition(frog.getPosition())) {
+				graphic.endGameScreen("You win\n" + frameCount / 10.0 + "s");
+				return true;
+			}
 		}
 		return false;
 	}
@@ -106,7 +112,9 @@ public class Game {
 		if (!testLose() && !testWin()) {
 			environment.update();
 			float time = frameCount / 10.0f;
-			this.graphic.add(new Element(frog.getPosition(), 6));
+			for (IFrog frog : frogs) {
+				this.graphic.add(new Element(frog.getPosition(), 6));
+			}
 			this.graphic.timer(time);
 			frameCount++;
 		}

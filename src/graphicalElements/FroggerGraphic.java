@@ -20,7 +20,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	private int pixelByCase = 16;
 	private int width;
 	private int height;
-	private IFrog frog;
+	private ArrayList<IFrog> frogs;
 	private JFrame frame;
 	private float time;
 
@@ -28,6 +28,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		this.width = width;
 		this.height = height;
 		elementsToDisplay = new ArrayList<Element>();
+		frogs = new ArrayList<IFrog>();
 
 		setBackground(new Color(6, 78, 7));
 		setPreferredSize(new Dimension(width * pixelByCase, height * pixelByCase));
@@ -93,11 +94,13 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 					GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 					int dir = 0;
-					if (frog.getDirection() == Direction.right) dir = 1;
-					if (frog.getDirection() == Direction.down) dir = 2;
-					if (frog.getDirection() == Direction.left) dir = 3;
-					BufferedImage rotated = create(sprites.get(e.spriteID), dir*Math.PI/2, gc);
-					g.drawImage(rotated, pixelByCase * e.absc, pixelByCase * (height - 1 - e.ord), null);
+					for (IFrog frog : frogs) {
+						if (frog.getDirection() == Direction.right) dir = 1;
+						if (frog.getDirection() == Direction.down) dir = 2;
+						if (frog.getDirection() == Direction.left) dir = 3;
+						BufferedImage rotated = create(sprites.get(e.spriteID), dir * Math.PI / 2, gc);
+						g.drawImage(rotated, pixelByCase * e.absc, pixelByCase * (height - 1 - e.ord), null);
+					}
 				} else {
 					g.drawImage(sprites.get(e.spriteID), pixelByCase * e.absc, pixelByCase * (height - 1 - e.ord), null);
 				}
@@ -117,17 +120,32 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-			frog.move(Direction.up);
-			break;
-		case KeyEvent.VK_DOWN:
-			frog.move(Direction.down);
-			break;
-		case KeyEvent.VK_LEFT:
-			frog.move(Direction.left);
-			break;
-		case KeyEvent.VK_RIGHT:
-			frog.move(Direction.right);
+			case KeyEvent.VK_UP:
+				frogs.get(0).move(Direction.up);
+				break;
+			case KeyEvent.VK_DOWN:
+				frogs.get(0).move(Direction.down);
+				break;
+			case KeyEvent.VK_LEFT:
+				frogs.get(0).move(Direction.left);
+				break;
+			case KeyEvent.VK_RIGHT:
+				frogs.get(0).move(Direction.right);
+		}
+		if (frogs.size() > 1) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_Z:
+					frogs.get(1).move(Direction.up);
+					break;
+				case KeyEvent.VK_S:
+					frogs.get(1).move(Direction.down);
+					break;
+				case KeyEvent.VK_Q:
+					frogs.get(1).move(Direction.left);
+					break;
+				case KeyEvent.VK_D:
+					frogs.get(1).move(Direction.right);
+			}
 		}
 	}
 
@@ -140,7 +158,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	}
 
 	public void setFrog(IFrog frog) {
-		this.frog = frog;
+		this.frogs.add(frog);
 	}
 
 	public void timer(float time) {
