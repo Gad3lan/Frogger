@@ -1,8 +1,5 @@
 package gameCommons;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.Timer;
 
 import frog.Frog;
@@ -40,12 +37,9 @@ public class Main {
 		game.setEnvironment(envInf);
 				
 		//Boucle principale : l'environnement s'actualise tous les tempo milisecondes
-		Timer timer = new Timer(tempo, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				game.update();
-				graphic.repaint();
-			}
+		Timer timer = new Timer(tempo, e -> {
+			game.update();
+			graphic.repaint();
 		});
 		timer.setInitialDelay(0);
 		timer.start();

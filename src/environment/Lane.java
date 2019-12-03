@@ -2,7 +2,6 @@ package environment;
 
 import gameCommons.Case;
 import gameCommons.Game;
-import environment.Car;
 import gameCommons.IFrog;
 import graphicalElements.Element;
 
@@ -26,37 +25,25 @@ public class Lane {
 		this.leftToRight = this.game.randomGen.nextBoolean();
 		if(isEmptyLane) {
 			isRiver = false;
-			if (game.randomGen.nextDouble() < 0.2) {
+			this.density = this.game.defaultDensity;//game.randomGen.nextDouble()*game.defaultDensity;
+			if (game.randomGen.nextDouble() < density) {
 				isRiver = true;
 			}
-			this.density = this.game.defaultDensity;//game.randomGen.nextDouble()*game.defaultDensity;
 		} else {
 			this.density = 0;
 		}
 		this.frameCount = 1;
 		for (int i = 0; i < this.game.width; i++) {
 			Case c = new Case(i, ord);
-			if (isSafe(c)) {
+			if ((isRiver && !isSafe(c)) || (!isRiver && isSafe(c))) {
 				if (game.randomGen.nextDouble() < density) {
-					cars.add(new Car(game, c, leftToRight));
+					cars.add(new Car(game, c, leftToRight, isRiver));
 				}
 			}
 		}
 	}
 
 	public void update() {
-
-		// TODO
-
-		// Toutes les voitures se déplacent d'une case au bout d'un nombre "tic
-		// d'horloge" égal à leur vitesse
-		// Notez que cette méthode est appelée à chaque tic d'horloge
-
-		// Les voitures doivent etre ajoutes a l interface graphique meme quand
-		// elle ne bougent pas
-
-		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-
 		if (isRiver) {
 			Color color = Color.BLUE;
 			for (int i = 0; i < game.width; i++) {
@@ -70,11 +57,9 @@ public class Lane {
 			for (Car c : cars) {
 				c.move();
 			}
-			if (cars.size() > 10) {
-				for (int i = 0; i < cars.size(); i++) {
-					if (!cars.get(i).isOnScreen()) {
-						cars.remove(i);
-					}
+			for (int i = 0; i < cars.size(); i++) {
+				if (!cars.get(i).isOnScreen()) {
+					cars.remove(i);
 				}
 			}
 		}
@@ -84,14 +69,11 @@ public class Lane {
 
 	public boolean isSafe(Case c) {
 		for (Car car : cars) {
-
 			if (car.getLeftPos() <= c.absc && car.getRightPos() >= c.absc) {
-				if (isRiver) return true;
-				return false;
+				return isRiver;
 			}
 		}
-		if (isRiver) return false;
-		return true;
+		return !isRiver;
 	}
 
 	public void moveFrog(IFrog frog) {
@@ -120,7 +102,7 @@ public class Lane {
 		if ((!isRiver && isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) ||
 			  isRiver && !isSafe(getFirstCase()) && !isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
-				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
+				cars.add(new Car(game, getBeforeFirstCase(), leftToRight, isRiver));
 			}
 		}
 	}
@@ -134,9 +116,9 @@ public class Lane {
 
 	private Case getBeforeFirstCase() {
 		if (leftToRight) {
-			return new Case(-1, ord);
+			return new Case(-6, ord);
 		} else
-			return new Case(game.width, ord);
+			return new Case(game.width+5, ord);
 	}
 
 }

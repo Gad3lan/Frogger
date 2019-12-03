@@ -3,7 +3,6 @@ package jeuInfinie;
 import environment.Environment;
 import environment.Lane;
 import gameCommons.Game;
-import gameCommons.IFrog;
 import gameCommons.Direction;
 
 import java.util.ArrayList;
@@ -12,35 +11,27 @@ public class EnvInf extends Environment implements IEnvInf {
 
     protected Direction dir;
 
-    public EnvInf(Game game, IFrog frog) {
+    public EnvInf(Game game, IFrogInf frog) {
         super(game, frog);
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < game.height; i++) {
             boolean isEmptyLane;
-            if (game.randomGen.nextDouble() < 0.2 || i < 2) {
-                isEmptyLane = false;
-            } else {
-                isEmptyLane = true;
-            }
+            isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2;
             lanes.add(new Lane(this.game, i, isEmptyLane));
         }
         this.dir = Direction.up;
     }
 
     public void downEnvironment(){
+        boolean isEmptyLane;
+        isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
+        lanes.add(new Lane(this.game, game.height, isEmptyLane));
         lanes.remove(0);
         System.out.print("!" + (game.height-1) + "\n");//---------------------------
-        for (int i = 0; i < game.height-1; i++) {
+        for (Lane lane : lanes) {
             System.out.print("!");//------------------------------------
-            lanes.get(i).downLanes();
+            lane.downLanes();
         }
-        boolean isEmptyLane;
-        if (game.randomGen.nextDouble() < 0.2) {
-            isEmptyLane = false;
-        } else {
-            isEmptyLane = true;
-        }
-        new Lane(this.game, game.height - 1, isEmptyLane);
     }
 
     public void update() {
@@ -50,8 +41,9 @@ public class EnvInf extends Environment implements IEnvInf {
             }
             lane.update();
         }
-        if(this.dir == Direction.up && this.frog.getPosition().ord == game.height/2)
+        if(this.dir == Direction.up && this.frog.getPosition().ord >= game.height/2) {
             downEnvironment();
+        }
     }
 
 }

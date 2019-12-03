@@ -18,11 +18,7 @@ public class Environment implements IEnvironment {
 		lanes = new ArrayList<Lane>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
-			if (game.randomGen.nextDouble() < 0.2 || i < 2 || i == game.height-1) {
-				isEmptyLane = false;
-			} else {
-				isEmptyLane = true;
-			}
+			isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2 && i != game.height - 1;
 			lanes.add(new Lane(this.game, i, isEmptyLane));
 		}
 	}

@@ -4,7 +4,6 @@ import frog.Frog;
 import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
-import gameCommons.IFrog;
 
 public class FrogInf extends Frog implements IFrogInf {
 

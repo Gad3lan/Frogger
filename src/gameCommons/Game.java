@@ -1,6 +1,5 @@
 package gameCommons;
 
-import java.awt.Color;
 import java.util.Random;
 
 import graphicalElements.Element;
@@ -47,7 +46,7 @@ public class Game {
 	/**
 	 * Lie l'objet frog à la partie
 	 * 
-	 * @param frog
+	 * @param frog l'objet frog
 	 */
 	public void setFrog(IFrog frog) {
 		this.frog = frog;
@@ -56,7 +55,7 @@ public class Game {
 	/**
 	 * Lie l'objet environment a la partie
 	 * 
-	 * @param environment
+	 * @param environment l'environnement du jeu
 	 */
 	public void setEnvironment(IEnvironment environment) {
 		this.environment = environment;

@@ -1,7 +1,5 @@
 package environment;
 
-import java.awt.Color;
-
 import gameCommons.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
@@ -10,14 +8,20 @@ public class Car {
 	private Game game;
 	private Case leftPosition;
 	private boolean leftToRight;
+	private boolean isLog;
 	private int length;
 	private int spriteID;
 
-	Car(Game game, Case leftPosition, boolean leftToRight) {
+	Car(Game game, Case leftPosition, boolean leftToRight, boolean isLog) {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
-		length = game.randomGen.nextInt(2) + 1;
+		this.isLog = isLog;
+		if (isLog) {
+			length = game.randomGen.nextInt(4) + 2;
+		} else {
+			length = game.randomGen.nextInt(2) + 1;
+		}
 		if (this.leftToRight) {
 			if (this.length == 1) {
 				this.spriteID = game.randomGen.nextInt(2) + 2;
@@ -52,12 +56,20 @@ public class Car {
 	}
 
 	public boolean isOnScreen() {
-		return(this.leftPosition.absc < -6 || this.leftPosition.absc > game.width+6);
+		return(this.leftPosition.absc > -6 && this.leftPosition.absc < game.width+6);
 	}
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	public void addToGraphics() {
-		game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
+		if (isLog) {
+			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, 15));
+			for (int i = 1; i < length - 1; i++) {
+				game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, 16));
+			}
+			game.getGraphic().add(new Element(leftPosition.absc + length-1, leftPosition.ord, 17));
+		} else {
+			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
+		}
 	}
 
 	public void downCar(){

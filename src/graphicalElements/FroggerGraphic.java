@@ -65,6 +65,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		sprites.add(ImageIO.read(new File(path + "/sprites/log_end.png")));
 		sprites.add(ImageIO.read(new File(path + "/sprites/log_mid.png")));
 		sprites.add(ImageIO.read(new File(path + "/sprites/log_front.png")));
+		System.out.println(sprites.size());
 	}
 
 	private static BufferedImage create(BufferedImage image, double angle,
