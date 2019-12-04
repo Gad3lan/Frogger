@@ -12,8 +12,8 @@ public class EnvInf extends Environment implements IEnvInf {
 
     protected Direction dir;
 
-    public EnvInf(Game game, IFrog frog) {
-        super(game, frog);
+    public EnvInf(Game game) {
+        super(game);
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < game.height; i++) {
             boolean isEmptyLane;
@@ -33,7 +33,7 @@ public class EnvInf extends Environment implements IEnvInf {
         }
     }
 
-    public void update() {
+    public void update(ArrayList<IFrog> frogs) {
         for (Lane lane : lanes) {
             for (IFrog frog : frogs) {
                 if (frog.getPosition().ord == lane.ord && lane.isRiver) {

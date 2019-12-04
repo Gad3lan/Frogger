@@ -1,6 +1,9 @@
 package jeuInfinie;
 
 import gameCommons.IEnvironment;
+import gameCommons.IFrog;
+
+import java.util.ArrayList;
 
 public interface IEnvInf extends IEnvironment {
     /*ecris ca pi import tout dans main pi new les bonne choses*/
@@ -13,6 +16,7 @@ public interface IEnvInf extends IEnvironment {
     /**
      *surcharge de update pour que l'instance puisse utiliser downEnvironment en fonction de
      *la position de la Frog et de la direction
+     * @param frogs toutes les grenouilles
      */
-    void update();
+    void update(ArrayList<IFrog> frogs);
 }

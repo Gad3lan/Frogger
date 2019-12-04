@@ -110,7 +110,7 @@ public class Game {
 	public void update() {
 		graphic.clear();
 		if (!testLose() && !testWin()) {
-			environment.update();
+			environment.update(frogs);
 			float time = frameCount / 10.0f;
 			for (IFrog frog : frogs) {
 				this.graphic.add(new Element(frog.getPosition(), 6));

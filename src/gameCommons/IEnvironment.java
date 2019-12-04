@@ -1,5 +1,7 @@
 package gameCommons;
 
+import java.util.ArrayList;
+
 public interface IEnvironment {
 
 	/**
@@ -23,6 +25,7 @@ public interface IEnvironment {
 	/**
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
-	public void update();
+	public void update(ArrayList<IFrog> frogs);
+
 
 }

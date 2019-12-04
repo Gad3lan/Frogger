@@ -42,7 +42,7 @@ public class Main {
 				graphic.setFrog(frog);
 				//Création et liaison de l'environnement
 				//IEnvironment env = new Environment(game, frog);
-				Environment env = new Environment(game, frog);
+				Environment env = new Environment(game);
 				game.setEnvironment(env);
 				break;
 			case "1":
@@ -52,10 +52,11 @@ public class Main {
 				graphic.setFrog(frogInf);
 				//Création et liaison de l'environnement
 				//IEnvironment env = new Environment(game, frog);
-				IEnvInf envInf = new EnvInf(game, frogInf);
+				IEnvInf envInf = new EnvInf(game);
 				game.setEnvironment(envInf);
+				break;
 			case "2":
-				// Création et liaison de la grenouille du joueur 1
+				// Création et liaison de la grenouille des 2 joueurs
 				IFrog frog1 = new Frog(game);
 				IFrog frog2 = new Frog(game);
 				game.setFrog(frog1);
@@ -64,7 +65,22 @@ public class Main {
 				graphic.setFrog(frog2);
 				//Création et liaison de l'environnement
 				//IEnvironment env = new Environment(game, frog);
-
+				IEnvironment twoPEnv = new EnvInf(game);
+				game.setEnvironment(twoPEnv);
+				break;
+			case "3":
+				// Création et liaison de la grenouille des 2 joueurs
+				IFrogInf infFrog1 = new FrogInf(game);
+				IFrogInf infFrog2 = new FrogInf(game);
+				game.setFrog(infFrog1);
+				game.setFrog(infFrog2);
+				graphic.setFrog(infFrog1);
+				graphic.setFrog(infFrog2);
+				//Création et liaison de l'environnement
+				//IEnvironment env = new Environment(game, frog);
+				IEnvInf twoPEnvInf = new EnvInf(game);
+				game.setEnvironment(twoPEnvInf);
+				break;
 			default:
 				break;
 		}

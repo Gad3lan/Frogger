@@ -109,9 +109,9 @@ public class Lane {
 
 	private Case getFirstCase() {
 		if (leftToRight) {
-			return new Case(0, ord);
+			return new Case(-5, ord);
 		} else
-			return new Case(game.width - 1, ord);
+			return new Case(game.width +4, ord);
 	}
 
 	private Case getBeforeFirstCase() {
