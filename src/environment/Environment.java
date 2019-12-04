@@ -32,6 +32,10 @@ public class Environment implements IEnvironment {
 	public void update(ArrayList<IFrog> frogs) {
 		for (Lane lane : lanes) {
 			for (IFrog frog : frogs) {
+				for(int absGlissant : lane.absGlissant) {
+					if (absGlissant == frog.getPosition().absc && lane.ord == frog.getPosition().ord)
+						frog.move(frog.getDirection());
+				}
 				if (frog.getPosition().ord == lane.ord && lane.isRiver) {
 					lane.moveFrog(frog);
 				}

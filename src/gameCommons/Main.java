@@ -24,9 +24,14 @@ public class Main {
 		int minSpeedInTimerLoops = 3;
 		double defaultDensity = 0.1;
 
-		//mis de cote pour laisser place au jeu inf---------------------
+
         String gameMode;
-        System.out.println("si vous souhaitez joué la version standard taper '0', la version infinie taper '1':");
+        System.out.println(
+        		"pour jouer la version:    taper:\n" +
+				"standard                   '0'\n" +
+				"infinie                    '1'\n" +
+				"standard 2 joueurs         '3'\n" +
+				"infinie 2 joueurs          '4'\n");
         Scanner scanner = new Scanner (System.in);
         gameMode = scanner.nextLine();
 

@@ -17,10 +17,13 @@ public class Lane {
 	public boolean isRiver;
 	private double density;
 	private int frameCount;
+	public ArrayList<Integer> absGlissant = new ArrayList<>();
+	private double densitySlidingCase;
 
 	public Lane(Game game, int ord, boolean isEmptyLane) {
 		this.game = game;
 		this.ord = ord;
+		this.densitySlidingCase = 0.02;
 		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
 		this.leftToRight = this.game.randomGen.nextBoolean();
 		if(isEmptyLane) {
@@ -34,6 +37,9 @@ public class Lane {
 		}
 		this.frameCount = 1;
 		for (int i = 0; i < this.game.width; i++) {
+			if(game.randomGen.nextDouble() < densitySlidingCase && !isRiver){
+				absGlissant.add(i);
+			}
 			Case c = new Case(i, ord);
 			if ((isRiver && !isSafe(c)) || (!isRiver && isSafe(c))) {
 				if (game.randomGen.nextDouble() < density) {
@@ -49,6 +55,10 @@ public class Lane {
 			for (int i = 0; i < game.width; i++) {
 				game.getGraphic().add(new Element(i, ord, color));
 			}
+		}
+		for (int i : absGlissant){
+			Color colorSlidingCase = Color.BLACK;
+			game.getGraphic().add(new Element(i, this.ord, colorSlidingCase));
 		}
 		for (Car c : cars) {
 			c.addToGraphics();
