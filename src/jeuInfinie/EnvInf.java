@@ -14,12 +14,8 @@ public class EnvInf extends Environment implements IEnvInf {
 
     public EnvInf(Game game) {
         super(game);
-        lanes = new ArrayList<Lane>();
-        for (int i = 0; i < game.height; i++) {
-            boolean isEmptyLane;
-            isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2;
-            lanes.add(new Lane(this.game, i, isEmptyLane));
-        }
+        boolean isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
+        lanes.add(new Lane(this.game, game.height - 1, isEmptyLane));
         this.dir = Direction.up;
     }
 
@@ -34,18 +30,10 @@ public class EnvInf extends Environment implements IEnvInf {
     }
 
     public void update(ArrayList<IFrog> frogs) {
-        for (Lane lane : lanes) {
-            for (IFrog frog : frogs) {
-                if (frog.getPosition().ord == lane.ord && lane.isRiver) {
-                    lane.moveFrog(frog);
-                }
-            }
-            lane.update();
-        }
+        super.update(frogs);
         if(FrogInf.needToMoveDown){
             FrogInf.needToMoveDown = false;
             downEnvironment();
         }
     }
-
 }
