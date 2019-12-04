@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe74d294-e3db-4e5b-b5ba-6085ffac64b0" name="Default Changelist" comment="Debut implementation multijoueur">
+    <list default="true" id="fe74d294-e3db-4e5b-b5ba-6085ffac64b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environment/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/environment/Environment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environment/Lane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/environment/Lane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameCommons/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameCommons/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameCommons/IEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameCommons/IEnvironment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameCommons/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameCommons/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeuInfinie/EnvInf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeuInfinie/EnvInf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeuInfinie/IEnvInf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeuInfinie/IEnvInf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Frogger/frog/Frog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/frog/Frog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Frogger/gameCommons/Main.class" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +50,18 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
@@ -63,18 +71,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -98,21 +94,7 @@
       <option name="project" value="LOCAL" />
       <updated>1574330329614</updated>
     </task>
-    <task id="LOCAL-00003" summary="Resolution de bugs et nettoyage du code. Jeu infini encore bugé">
-      <created>1575365131103</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1575365131104</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Debut implementation multijoueur">
-      <created>1575404886396</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1575404886396</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,52 +115,42 @@
     <MESSAGE value="Classe car complete, lane en cours" />
     <MESSAGE value="Partie 2 finie, timer aussi" />
     <MESSAGE value="ajout jeu inf, version non fonctionnel" />
-    <MESSAGE value="Resolution de bugs et nettoyage du code. Jeu infini encore bugé" />
-    <MESSAGE value="Debut implementation multijoueur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debut implementation multijoueur" />
+    <MESSAGE value="debug de la riviere, et du jeu inf, ajout de choix de jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug de la riviere, et du jeu inf, ajout de choix de jeu" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="240" y="65" key="#Project_Structure" timestamp="1575396096166">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="240" y="86" key="#Project_Structure" timestamp="1575293025152">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="65" key="#Project_Structure/0.0.1280.800@0.0.1280.800" timestamp="1575396096166" />
+    <state x="240" y="65" key="#Project_Structure/0.0.1280.800@0.0.1280.800" timestamp="1575292755751" />
     <state x="240" y="86" key="#Project_Structure/0.23.1280.777@0.23.1280.777" timestamp="1575293025152" />
-    <state x="209" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575396104878">
+    <state x="209" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575292921940">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="209" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1575396104878" />
+    <state x="209" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1575292921940" />
     <state x="482" y="252" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575292914590">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="482" y="252" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.800@0.0.1280.800" timestamp="1575292914590" />
-    <state x="-1143" y="-1754" key="CommitChangelistDialog2" timestamp="1575464439040">
-      <screen x="-1440" y="-1760" width="1440" height="2560" />
+    <state width="1259" height="99" key="GridCell.Tab.0.bottom" timestamp="1575364977071">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="-1143" y="-1754" key="CommitChangelistDialog2/0.0.1280.800/-1440.-1760.1440.2560@-1440.-1760.1440.2560" timestamp="1575464439040" />
-    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1575404886075" />
-    <state width="1419" height="405" key="GridCell.Tab.0.bottom" timestamp="1575465110318">
-      <screen x="-1440" y="-1760" width="1440" height="2560" />
-    </state>
-    <state width="1419" height="405" key="GridCell.Tab.0.bottom/0.0.1280.800/-1440.-1760.1440.2560@-1440.-1760.1440.2560" timestamp="1575465110318" />
-    <state width="1259" height="99" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1575404941670" />
+    <state width="1259" height="99" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1575364977071" />
     <state width="1239" height="85" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1575308149347" />
-    <state width="1419" height="405" key="GridCell.Tab.0.center" timestamp="1575465110314">
-      <screen x="-1440" y="-1760" width="1440" height="2560" />
+    <state width="1259" height="99" key="GridCell.Tab.0.center" timestamp="1575364977068">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1419" height="405" key="GridCell.Tab.0.center/0.0.1280.800/-1440.-1760.1440.2560@-1440.-1760.1440.2560" timestamp="1575465110314" />
-    <state width="1259" height="99" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1575404941668" />
+    <state width="1259" height="99" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1575364977068" />
     <state width="1239" height="85" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1575308149346" />
-    <state width="1419" height="405" key="GridCell.Tab.0.left" timestamp="1575465110312">
-      <screen x="-1440" y="-1760" width="1440" height="2560" />
+    <state width="1259" height="99" key="GridCell.Tab.0.left" timestamp="1575364977067">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1419" height="405" key="GridCell.Tab.0.left/0.0.1280.800/-1440.-1760.1440.2560@-1440.-1760.1440.2560" timestamp="1575465110312" />
-    <state width="1259" height="99" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1575404941668" />
+    <state width="1259" height="99" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1575364977067" />
     <state width="1239" height="85" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1575308149345" />
-    <state width="1419" height="405" key="GridCell.Tab.0.right" timestamp="1575465110316">
-      <screen x="-1440" y="-1760" width="1440" height="2560" />
+    <state width="1259" height="99" key="GridCell.Tab.0.right" timestamp="1575364977070">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1419" height="405" key="GridCell.Tab.0.right/0.0.1280.800/-1440.-1760.1440.2560@-1440.-1760.1440.2560" timestamp="1575465110316" />
-    <state width="1259" height="99" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1575404941670" />
+    <state width="1259" height="99" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1575364977070" />
     <state width="1239" height="85" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1575308149346" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1575293039826">
       <screen x="0" y="23" width="1280" height="777" />
@@ -196,10 +168,6 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1239" height="229" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1575293039826" />
-    <state x="351" y="123" key="MultipleFileMergeDialog" timestamp="1575396080532">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="351" y="123" key="MultipleFileMergeDialog/0.0.1280.800@0.0.1280.800" timestamp="1575396080532" />
     <state x="304" y="184" key="run.anything.popup" timestamp="1575292928224">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
