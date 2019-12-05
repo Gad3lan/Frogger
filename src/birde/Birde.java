@@ -1,12 +1,10 @@
 package birde;
 
-import frog.Frog;
+
 import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
-import graphicalElements.Element;
-
-import java.awt.*;
+import gameCommons.IFrog;
 
 public class Birde {
 
@@ -16,7 +14,7 @@ public class Birde {
     private Direction direction;
     private  int speed;
 
-    Birde(Game game, Frog frog){
+    public Birde(Game game, IFrog frog){
         this.game = game;
         switch(this.game.randomGen.nextInt(3)){
             case 0:
@@ -35,6 +33,11 @@ public class Birde {
         this.pos = new Case(game.height-1, frog.getPosition().ord);
         this.speed = 20;
         this.frameCount = 1;
+        System.out.println("!apparition");//-----------------------------------
+    }
+
+    public Case getPos(){
+        return pos;
     }
 
     public boolean update(){
@@ -75,9 +78,8 @@ public class Birde {
                     break;
             }
         }
-        if(cetOiseauDisparaitIl)
-            game.getGraphic().add(new Element(this.pos, Color.YELLOW));
         this.frameCount++;
+        System.out.println("!update");//-----------------------------------
         return cetOiseauDisparaitIl;
     }
 }
