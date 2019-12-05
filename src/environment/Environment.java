@@ -2,6 +2,7 @@ package environment;
 
 import java.util.ArrayList;
 
+import birde.Birde;
 import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
@@ -10,6 +11,7 @@ import gameCommons.IFrog;
 public class Environment implements IEnvironment {
 	protected Game game;
 	protected ArrayList<Lane> lanes;
+	protected ArrayList<Birde> birdes;
 
 	public Environment(Game game) {
 		this.game = game;
@@ -32,7 +34,7 @@ public class Environment implements IEnvironment {
 	public void update(ArrayList<IFrog> frogs) {
 		for (Lane lane : lanes) {
 			for (IFrog frog : frogs) {
-				for(int absGlissant : lane.absGlissant) {
+				for (int absGlissant : lane.absSlidingCase) {
 					if (absGlissant == frog.getPosition().absc && lane.ord == frog.getPosition().ord)
 						frog.move(frog.getDirection());
 				}
@@ -42,6 +44,9 @@ public class Environment implements IEnvironment {
 			}
 			lane.update();
 		}
+		for(Birde b: birdes) {
+			if (b.update())
+				birdes.remove(b);
+		}
 	}
-
 }
