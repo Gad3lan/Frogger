@@ -5,6 +5,9 @@ import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
 import gameCommons.IFrog;
+import graphicalElements.Element;
+
+import java.awt.*;
 
 public class Birde {
 
@@ -16,31 +19,36 @@ public class Birde {
 
     public Birde(Game game, IFrog frog){
         this.game = game;
-        switch(this.game.randomGen.nextInt(3)){
+        switch(this.game.randomGen.nextInt(4)){
             case 0:
                 this.direction = Direction.right;
+                this.pos = new Case(0, frog.getPosition().ord);
                 break;
             case 1:
                 this.direction = Direction.up;
+                this.pos = new Case(frog.getPosition().absc, 0);
                 break;
             case 2:
                 this.direction = Direction.left;
+                this.pos = new Case(game.width, frog.getPosition().ord);
                 break;
             default:
                 this.direction = Direction.down;
+                this.pos = new Case(frog.getPosition().absc, game.height);
                 break;
         }
-        this.pos = new Case(game.height-1, frog.getPosition().ord);
-        this.speed = 20;
+        this.speed = 2;
         this.frameCount = 1;
-        System.out.println("!apparition");//-----------------------------------
     }
 
-    public Case getPos(){
-        return pos;
+    public Case getPos(){ return this.pos; }
+
+    public void down(){
+        this.pos = new Case(pos.absc, pos.ord - 1);
     }
 
     public boolean update(){
+        this.frameCount++;
         boolean cetOiseauDisparaitIl = true;
         if(frameCount%this.speed == 0) {
             switch (this.direction) {
@@ -78,8 +86,7 @@ public class Birde {
                     break;
             }
         }
-        this.frameCount++;
-        System.out.println("!update");//-----------------------------------
+        game.getGraphic().add(new Element(this.pos, Color.YELLOW));
         return cetOiseauDisparaitIl;
     }
 }

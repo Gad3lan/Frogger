@@ -27,6 +27,9 @@ public class EnvInf extends Environment implements IEnvInf {
         for (Lane lane : lanes) {
             lane.downLanes();
         }
+        for (int i=0; i<birdes.size(); i++){
+            birdes.get(i).down();
+        }
     }
 
     public void update(ArrayList<IFrog> frogs) {

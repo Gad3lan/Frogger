@@ -1,6 +1,6 @@
 package environment;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 
 import birde.Birde;
@@ -8,7 +8,6 @@ import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
 import gameCommons.IFrog;
-import graphicalElements.Element;
 
 public class Environment implements IEnvironment {
 	protected Game game;
@@ -27,6 +26,11 @@ public class Environment implements IEnvironment {
 	}
 
 	public boolean isSafe(Case c) {
+		for(Birde b : birdes){
+			if(b.getPos().absc == c.absc && b.getPos().ord == c.ord){
+				return false;
+			}
+		}
 		return lanes.get(c.ord).isSafe(c);
 	}
 
@@ -47,20 +51,15 @@ public class Environment implements IEnvironment {
 			}
 			lane.update();
 		}
-		for(int i =0; i < birdes.size(); i++){
-			if (birdes.get(i).update()) {
-				game.getGraphic().add(new Element(birdes.get(i).getPos(), Color.YELLOW));
-				System.out.println("!couleur");//-----------------------------------
-			}else {
-				birdes.remove(birdes.get(i));
-				System.out.println("!disparition demander");//-----------------------------------
+		for (IFrog frog : frogs) {
+			if (game.randomGen.nextDouble() < 0.015 && frog.getPosition().ord > 1) {
+				birdes.add(new birde.Birde(game, frog));
 			}
 		}
-		for (IFrog frog : frogs) {
-			if (game.randomGen.nextDouble() < 0.05 && frog.getPosition().ord > 1) {
-				birdes.add(new birde.Birde(game, frog));
-
-				System.out.println("!apparition demander");//-----------------------------------
+		for(int i =0; i < birdes.size(); i++){
+			if (birdes.get(i).update()) {
+			}else {
+				birdes.remove(birdes.get(i));
 			}
 		}
 	}
