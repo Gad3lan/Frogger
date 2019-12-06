@@ -16,8 +16,8 @@ public class Environment implements IEnvironment {
 
 	public Environment(Game game) {
 		this.game = game;
-		lanes = new ArrayList<Lane>();
-		birdes = new ArrayList<Birde>();
+		lanes = new ArrayList<>();
+		birdes = new ArrayList<>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
 			isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2 && i != game.height - 1;
@@ -42,10 +42,10 @@ public class Environment implements IEnvironment {
 		for (Lane lane : lanes) {
 			for (IFrog frog : frogs) {
 				for (int absGlissant : lane.absSlidingCase) {
-					if (absGlissant == frog.getPosition().absc && lane.ord == frog.getPosition().ord)
+					if (absGlissant == frog.getPosition().absc && lane.getOrd() == frog.getPosition().ord)
 						frog.move(frog.getDirection());
 				}
-				if (frog.getPosition().ord == lane.ord && lane.isRiver) {
+				if (frog.getPosition().ord == lane.getOrd() && lane.getIsRiver()) {
 					lane.moveFrog(frog);
 				}
 			}
@@ -57,8 +57,7 @@ public class Environment implements IEnvironment {
 			}
 		}
 		for(int i =0; i < birdes.size(); i++){
-			if (birdes.get(i).update()) {
-			}else {
+			if (!birdes.get(i).update()) {
 				birdes.remove(birdes.get(i));
 			}
 		}

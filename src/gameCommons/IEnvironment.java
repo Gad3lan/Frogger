@@ -12,20 +12,20 @@ public interface IEnvironment {
 	 *            la case � tester
 	 * @return vrai s'il n'y a pas danger
 	 */
-	public boolean isSafe(Case c);
+	boolean isSafe(Case c);
 
 	/**
 	 * Teste si la case est une case d'arrivee
 	 * 
-	 * @param c
+	 * @param c la case a tester
 	 * @return vrai si la case est une case de victoire
 	 */
-	public boolean isWinningPosition(Case c);
+	boolean isWinningPosition(Case c);
 
 	/**
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
-	public void update(ArrayList<IFrog> frogs);
+	void update(ArrayList<IFrog> frogs);
 
 
 }

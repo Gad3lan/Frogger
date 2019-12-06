@@ -10,20 +10,19 @@ import java.util.ArrayList;
 
 public class Lane {
 	private Game game;
-	public int ord;
+	private int ord;
 	private int speed;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
-	public boolean isRiver;
+	private boolean isRiver;
 	private double density;
 	private int frameCount;
-	public ArrayList<Integer> absSlidingCase = new ArrayList<>();
-	private double densitySlidingCase;
+	final ArrayList<Integer> absSlidingCase = new ArrayList<>();
 
 	public Lane(Game game, int ord, boolean isEmptyLane) {
 		this.game = game;
 		this.ord = ord;
-		this.densitySlidingCase = 0.02;
+		double densitySlidingCase = 0.02;
 		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
 		this.leftToRight = this.game.randomGen.nextBoolean();
 		if(isEmptyLane) {
@@ -49,7 +48,11 @@ public class Lane {
 		}
 	}
 
-	public void update() {
+	int getOrd(){return this.ord;}
+
+	boolean getIsRiver(){ return this.isRiver;}
+
+	void update() {
 		if (isRiver) {
 			Color color = Color.BLUE;
 			for (int i = 0; i < game.width; i++) {
@@ -70,6 +73,7 @@ public class Lane {
 			for (int i = 0; i < cars.size(); i++) {
 				if (!cars.get(i).isOnScreen()) {
 					cars.remove(i);
+					i--;
 				}
 			}
 		}
@@ -77,7 +81,7 @@ public class Lane {
 		mayAddCar();
 	}
 
-	public boolean isSafe(Case c) {
+	boolean isSafe(Case c) {
 		for (Car car : cars) {
 			if (car.getLeftPos() <= c.absc && car.getRightPos() >= c.absc) {
 				return isRiver;
@@ -86,7 +90,7 @@ public class Lane {
 		return !isRiver;
 	}
 
-	public void moveFrog(IFrog frog) {
+	void moveFrog(IFrog frog) {
 		if (isSafe(frog.getPosition()) && frameCount%speed == 1) {
 			frog.riverMove(leftToRight);
 		}

@@ -31,7 +31,7 @@ public class Main {
 				"standard                   '0'\n" +
 				"infinie                    '1'\n" +
 				"standard 2 joueurs         '3'\n" +
-				"infinie 2 joueurs          '4'\n");
+				"infinie 2 joueurs          '4'");
         Scanner scanner = new Scanner (System.in);
         gameMode = scanner.nextLine();
 

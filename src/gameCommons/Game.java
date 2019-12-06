@@ -16,6 +16,7 @@ public class Game {
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
 	private int frameCount;
+	private boolean endGame;
 
 	// Lien aux objets utilisés
 	private IEnvironment environment;
@@ -35,14 +36,15 @@ public class Game {
 	 * @param defaultDensity
 	 *            densite de voiture utilisee par defaut pour les routes
 	 */
-	public Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
+	Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
 		super();
 		this.graphic = graphic;
 		this.width = width;
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
-		this.frogs = new ArrayList<IFrog>();
+		this.frogs = new ArrayList<>();
+		this.endGame = false;
 	}
 
 	/**
@@ -59,7 +61,7 @@ public class Game {
 	 * 
 	 * @param environment l'environnement du jeu
 	 */
-	public void setEnvironment(IEnvironment environment) {
+	void setEnvironment(IEnvironment environment) {
 		this.environment = environment;
 	}
 
@@ -77,7 +79,7 @@ public class Game {
 	 * 
 	 * @return true si le partie est perdue
 	 */
-	public boolean testLose() {
+	private boolean testLose() {
 		for (IFrog frog : frogs) {
 			if (!environment.isSafe(frog.getPosition())) {
 				graphic.endGameScreen("You Lose!\n" + frameCount / 10.0 + "s");
@@ -93,7 +95,7 @@ public class Game {
 	 * 
 	 * @return true si la partie est gagnée
 	 */
-	public boolean testWin() {
+	private boolean testWin() {
 		for (IFrog frog : frogs) {
 			if (environment.isWinningPosition(frog.getPosition())) {
 				graphic.endGameScreen("You win\n" + frameCount / 10.0 + "s");
@@ -107,9 +109,12 @@ public class Game {
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
 	 * partie.
 	 */
-	public void update() {
+	void update() {
+		if (testLose() || testWin()) {
+			endGame = true;
+		}
 		graphic.clear();
-		if (!testLose() && !testWin()) {
+		if (!endGame) {
 			environment.update(frogs);
 			float time = frameCount / 10.0f;
 			for (IFrog frog : frogs) {

@@ -4,7 +4,7 @@ import gameCommons.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
 
-public class Car {
+class Car {
 	private Game game;
 	private Case leftPosition;
 	private boolean leftToRight;
@@ -38,7 +38,7 @@ public class Car {
 		addToGraphics();
 	}
 	
-	public void move() {
+	void move() {
 		if (this.leftToRight) {
 			this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
 		}
@@ -47,20 +47,20 @@ public class Car {
 		}
 	}
 
-	public int getLeftPos() {
+	int getLeftPos() {
 		return leftPosition.absc;
 	}
 
-	public int getRightPos() {
-		return leftPosition.absc + length;
+	int getRightPos() {
+		return leftPosition.absc + length - 1;
 	}
 
-	public boolean isOnScreen() {
+	boolean isOnScreen() {
 		return(this.leftPosition.absc > -6 && this.leftPosition.absc < game.width+6);
 	}
 	
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
-	public void addToGraphics() {
+	void addToGraphics() {
 		if (isLog) {
 			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, 15));
 			for (int i = 1; i < length - 1; i++) {
@@ -72,7 +72,7 @@ public class Car {
 		}
 	}
 
-	public void downCar(){
+	void downCar(){
 		this.leftPosition = new Case(this.leftPosition.absc, this.leftPosition.ord-1);
 	}
 

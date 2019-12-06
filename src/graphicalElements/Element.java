@@ -6,9 +6,9 @@ import gameCommons.Case;
 
 
 public class Element extends Case {
-    public final int spriteID;
-    public final boolean isSprite;
-    public final Color color;
+    final int spriteID;
+    final boolean isSprite;
+    final Color color;
 
     public Element(int absc, int ord, int spriteID) {
         super(absc, ord);
