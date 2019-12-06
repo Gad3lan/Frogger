@@ -19,6 +19,9 @@ public class EnvInf extends Environment implements IEnvInf {
         this.dir = Direction.up;
     }
 
+    /**
+     * Baisse toutes les lignes de l'environnement
+     */
     public void downEnvironment(){
         boolean isEmptyLane;
         isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
@@ -27,11 +30,15 @@ public class EnvInf extends Environment implements IEnvInf {
         for (Lane lane : lanes) {
             lane.downLanes();
         }
-        for (int i=0; i<birdes.size(); i++){
-            birdes.get(i).down();
+        for (int i = 0; i< birds.size(); i++){
+            birds.get(i).down();
         }
     }
 
+    /**
+     * Met a jour l'environnement
+     * @param frogs toutes les grenouilles
+     */
     public void update(ArrayList<IFrog> frogs) {
         super.update(frogs);
         if(FrogInf.needToMoveDown){

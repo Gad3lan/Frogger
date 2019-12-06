@@ -10,20 +10,20 @@ import java.util.ArrayList;
 
 public class Lane {
 	private Game game;
+	private ArrayList<Car> cars = new ArrayList<>();
 	public int ord;
 	private int speed;
-	private ArrayList<Car> cars = new ArrayList<>();
+	private int frameCount;
+	private double density;
+	private double slipperyCaseDensity;
 	private boolean leftToRight;
 	public boolean isRiver;
-	private double density;
-	private int frameCount;
-	public ArrayList<Integer> absSlidingCase = new ArrayList<>();
-	private double densitySlidingCase;
+	public ArrayList<Integer> splipperyCaseAbs = new ArrayList<>();
 
 	public Lane(Game game, int ord, boolean isEmptyLane) {
 		this.game = game;
 		this.ord = ord;
-		this.densitySlidingCase = 0.02;
+		this.slipperyCaseDensity = 0.02;
 		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
 		this.leftToRight = this.game.randomGen.nextBoolean();
 		if(isEmptyLane) {
@@ -37,8 +37,8 @@ public class Lane {
 		}
 		this.frameCount = 1;
 		for (int i = 0; i < this.game.width; i++) {
-			if(game.randomGen.nextDouble() < densitySlidingCase && !isRiver){
-				absSlidingCase.add(i);
+			if(game.randomGen.nextDouble() < slipperyCaseDensity && !isRiver){
+				splipperyCaseAbs.add(i);
 			}
 			Case c = new Case(i, ord);
 			if ((isRiver && !isSafe(c)) || (!isRiver && isSafe(c))) {
@@ -56,9 +56,9 @@ public class Lane {
 				game.getGraphic().add(new Element(i, ord, color));
 			}
 		}
-		for (int i : absSlidingCase){
-			Color colorSlidingCase = Color.BLACK;
-			game.getGraphic().add(new Element(i, this.ord, colorSlidingCase));
+		for (int i : splipperyCaseAbs){
+			Color slipperyCaseColor = Color.BLACK;
+			game.getGraphic().add(new Element(i, this.ord, slipperyCaseColor));
 		}
 		for (Car c : cars) {
 			c.addToGraphics();
@@ -92,17 +92,12 @@ public class Lane {
 		}
 	}
 
-	public void downLanes(){
+	public void downLanes() {
 		this.ord--;
-		for(Car c: cars){
+		for (Car c : cars) {
 			c.downCar();
 		}
 	}
-
-
-	/*
-	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
-	 */
 
 	/**
 	 * Ajoute une voiture au début de la voie avec probabilité égale à la

@@ -3,7 +3,7 @@ package environment;
 
 import java.util.ArrayList;
 
-import birde.Birde;
+import bird.Bird;
 import gameCommons.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
@@ -12,12 +12,12 @@ import gameCommons.IFrog;
 public class Environment implements IEnvironment {
 	protected Game game;
 	protected ArrayList<Lane> lanes;
-	protected ArrayList<Birde> birdes;
+	protected ArrayList<Bird> birds;
 
 	public Environment(Game game) {
 		this.game = game;
 		lanes = new ArrayList<Lane>();
-		birdes = new ArrayList<Birde>();
+		birds = new ArrayList<Bird>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
 			isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2 && i != game.height - 1;
@@ -25,8 +25,13 @@ public class Environment implements IEnvironment {
 		}
 	}
 
+	/**
+	 *
+	 * @param c La case a verifier
+	 * @return True si la grenouille peut aller sur cette case, false sinon
+	 */
 	public boolean isSafe(Case c) {
-		for(Birde b : birdes){
+		for(Bird b : birds){
 			if(b.getPos().absc == c.absc && b.getPos().ord == c.ord){
 				return false;
 			}
@@ -34,15 +39,24 @@ public class Environment implements IEnvironment {
 		return lanes.get(c.ord).isSafe(c);
 	}
 
+	/**
+	 *
+	 * @param c La case a verifier
+	 * @return True si cette case declanche la victoire
+	 */
 	public boolean isWinningPosition(Case c) {
 		return(c.ord == game.height - 1);
 	}
 
+	/**
+	 * Met a jour l'environnement
+	 * @param frogs Les différentes grenouilles
+	 */
 	public void update(ArrayList<IFrog> frogs) {
 		for (Lane lane : lanes) {
 			for (IFrog frog : frogs) {
-				for (int absGlissant : lane.absSlidingCase) {
-					if (absGlissant == frog.getPosition().absc && lane.ord == frog.getPosition().ord)
+				for (int SlipperyAbs : lane.splipperyCaseAbs) {
+					if (SlipperyAbs == frog.getPosition().absc && lane.ord == frog.getPosition().ord)
 						frog.move(frog.getDirection());
 				}
 				if (frog.getPosition().ord == lane.ord && lane.isRiver) {
@@ -53,13 +67,12 @@ public class Environment implements IEnvironment {
 		}
 		for (IFrog frog : frogs) {
 			if (game.randomGen.nextDouble() < 0.015 && frog.getPosition().ord > 1) {
-				birdes.add(new birde.Birde(game, frog));
+				birds.add(new Bird(game, frog));
 			}
 		}
-		for(int i =0; i < birdes.size(); i++){
-			if (birdes.get(i).update()) {
-			}else {
-				birdes.remove(birdes.get(i));
+		for(int i = 0; i < birds.size(); i++){
+			if (!birds.get(i).update()) {
+				birds.remove(birds.get(i));
 			}
 		}
 	}

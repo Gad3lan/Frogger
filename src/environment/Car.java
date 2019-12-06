@@ -37,7 +37,10 @@ public class Car {
 		}
 		addToGraphics();
 	}
-	
+
+	/**
+	 * Deplace la voiture suivant le sens de circulation
+	 */
 	public void move() {
 		if (this.leftToRight) {
 			this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
@@ -47,19 +50,33 @@ public class Car {
 		}
 	}
 
+	/**
+	 *
+	 * @return La position de la gauche de la voiture
+	 */
 	public int getLeftPos() {
 		return leftPosition.absc;
 	}
 
+	/**
+	 *
+	 * @return La position de la droite de la voiture
+	 */
 	public int getRightPos() {
-		return leftPosition.absc + length;
+		return leftPosition.absc + length-1;
 	}
 
+	/**
+	 *
+	 * @return True si la voiture est visible, false sinon
+	 */
 	public boolean isOnScreen() {
 		return(this.leftPosition.absc > -6 && this.leftPosition.absc < game.width+6);
 	}
-	
-	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
+
+	/**
+	 * Permet d'ajouter un element graphique correspondant a la voiture
+	 */
 	public void addToGraphics() {
 		if (isLog) {
 			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, 15));
@@ -72,6 +89,9 @@ public class Car {
 		}
 	}
 
+	/**
+	 * Baisse la voitude d'une case
+	 */
 	public void downCar(){
 		this.leftPosition = new Case(this.leftPosition.absc, this.leftPosition.ord-1);
 	}

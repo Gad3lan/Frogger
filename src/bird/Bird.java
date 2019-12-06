@@ -1,4 +1,4 @@
-package birde;
+package bird;
 
 
 import gameCommons.Case;
@@ -9,7 +9,7 @@ import graphicalElements.Element;
 
 import java.awt.*;
 
-public class Birde {
+public class Bird {
 
     private int frameCount;
     private Game game;
@@ -17,7 +17,7 @@ public class Birde {
     private Direction direction;
     private  int speed;
 
-    public Birde(Game game, IFrog frog){
+    public Bird(Game game, IFrog frog){
         this.game = game;
         switch(this.game.randomGen.nextInt(4)){
             case 0:
@@ -41,52 +41,63 @@ public class Birde {
         this.frameCount = 1;
     }
 
+    /**
+     *
+     * @return la position de la grenouille
+     */
     public Case getPos(){ return this.pos; }
 
+    /**
+     * Baisse les coordonnées de l'oiseau
+     */
     public void down(){
         this.pos = new Case(pos.absc, pos.ord - 1);
     }
 
+    /**
+     * Met à jour l'oiseau
+     * @return True si l'oiseau est toujours visible, false sinon
+     */
     public boolean update(){
         this.frameCount++;
-        boolean cetOiseauDisparaitIl = true;
+        boolean isOnScreen = true;
         if(frameCount%this.speed == 0) {
             switch (this.direction) {
                 case right:
                     if (pos.absc == game.width - 1)
-                        cetOiseauDisparaitIl = false;
+                        isOnScreen = false;
                     else {
                         pos = new Case(pos.absc + 1, pos.ord);
-                        cetOiseauDisparaitIl = true;
+                        isOnScreen = true;
                     }
                     break;
                 case up:
                     if (pos.ord == game.height - 1)
-                        cetOiseauDisparaitIl = false;
+                        isOnScreen = false;
                     else {
                         pos = new Case(pos.absc, pos.ord + 1);
-                        cetOiseauDisparaitIl = true;
+                        isOnScreen = true;
                     }
                     break;
                 case left:
                     if (pos.absc == 0)
-                        cetOiseauDisparaitIl = false;
+                        isOnScreen = false;
                     else {
                         pos = new Case(pos.absc - 1, pos.ord);
-                        cetOiseauDisparaitIl = true;
+                        isOnScreen = true;
                     }
                     break;
                 default:
                     if (pos.ord == 0)
-                        cetOiseauDisparaitIl = false;
+                        isOnScreen = false;
                     else {
                         pos = new Case(pos.absc, pos.ord - 1);
-                        cetOiseauDisparaitIl = true;
+                        isOnScreen = true;
                     }
                     break;
             }
         }
         game.getGraphic().add(new Element(this.pos, Color.YELLOW));
-        return cetOiseauDisparaitIl;
+        return isOnScreen;
     }
 }

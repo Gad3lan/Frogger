@@ -30,8 +30,8 @@ public class Main {
         		"pour jouer la version:    taper:\n" +
 				"standard                   '0'\n" +
 				"infinie                    '1'\n" +
-				"standard 2 joueurs         '3'\n" +
-				"infinie 2 joueurs          '4'\n");
+				"standard 2 joueurs         '2'\n" +
+				"infinie 2 joueurs          '3'\n");
         Scanner scanner = new Scanner (System.in);
         gameMode = scanner.nextLine();
 

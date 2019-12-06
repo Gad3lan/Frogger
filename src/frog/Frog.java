@@ -17,14 +17,26 @@ public class Frog implements IFrog {
         this.pos = new Case(game.width / 2, 0);
     }
 
+    /**
+     *
+     * @return la position de la grenouille
+     */
     public Case getPosition() {
         return this.pos;
     }
 
+    /**
+     *
+     * @return la direction de la grenouille
+     */
     public Direction getDirection() {
         return this.dir;
     }
 
+    /**
+     * Deplace la grenouille dans la direction voulue
+     * @param key la direction de la grenouille
+     */
     public void move(Direction key) {
         switch (key) {
             case up:
@@ -49,6 +61,10 @@ public class Frog implements IFrog {
         this.dir = key;
     }
 
+    /**
+     * Bouge la grenouille si elle est sur une buche
+     * @param leftToRight la direction des buches de la rivière
+     */
     public void riverMove(boolean leftToRight) {
         if (leftToRight && pos.absc < game.width - 1) {
             this.pos = new Case(this.pos.absc + 1, this.pos.ord);

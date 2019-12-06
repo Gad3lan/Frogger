@@ -13,6 +13,10 @@ public class FrogInf extends Frog implements IFrogInf {
         super(game);
     }
 
+    /**
+     * Bouge la grenouille dans la direction donee
+     * @param key la direction de la grenouille
+     */
     public void move(Direction key) {
         if(key == Direction.up){
             if (pos.ord < game.height/2){

@@ -42,7 +42,8 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
-		this.frogs = new ArrayList<IFrog>();
+		this.frogs = new ArrayList<IFrog>(); //type de l'ArrayList pas necessaire car implicite, conservé pour une
+											//meilleure lisibilité
 	}
 
 	/**
