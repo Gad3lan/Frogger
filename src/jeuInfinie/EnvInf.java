@@ -14,7 +14,7 @@ public class EnvInf extends Environment implements IEnvInf {
 
     public EnvInf(Game game) {
         super(game);
-        boolean isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
+        boolean isEmptyLane = (game.randomGen.nextDouble() < 0.2);
         lanes.add(new Lane(this.game, game.height - 1, isEmptyLane));
         this.dir = Direction.up;
     }
@@ -24,7 +24,7 @@ public class EnvInf extends Environment implements IEnvInf {
      */
     public void downEnvironment(){
         boolean isEmptyLane;
-        isEmptyLane = !(game.randomGen.nextDouble() < 0.2);
+        isEmptyLane = (game.randomGen.nextDouble() < 0.2);
         lanes.add(new Lane(this.game, game.height, isEmptyLane));
         lanes.remove(0);
         for (Lane lane : lanes) {

@@ -60,7 +60,6 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	private void loadImages() throws IOException {
 		String path = System.getProperty("user.dir") + "/src";
 		for (int i = 1; i <= 4; i++) {
-			System.out.println(path + "/sprites/car_1_" + i + ".png");
 			sprites.add(ImageIO.read(new File(path + "/sprites/car_1_" + i + ".png")));
 		}
 		sprites.add(ImageIO.read(new File(path + "/sprites/car_2_1.png")));
@@ -71,9 +70,14 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 			sprites.add(ImageIO.read(new File(path + "/sprites/frog_jump_2_" + i + ".png")));
 		}
 		sprites.add(ImageIO.read(new File(path + "/sprites/log_end.png")));
-		sprites.add(ImageIO.read(new File(path + "/sprites/log_mid.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/log_mid_1.png")));
 		sprites.add(ImageIO.read(new File(path + "/sprites/log_front.png")));
-		System.out.println(sprites.size());
+		sprites.add(ImageIO.read(new File(path + "/sprites/eagle.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/road.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/water.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/grass.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/oil.png")));
+		sprites.add(ImageIO.read(new File(path + "/sprites/lilypad.png")));
 	}
 
 	/**
@@ -116,7 +120,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 					if (frog.getDirection() == Direction.right) dir = 1;
 					if (frog.getDirection() == Direction.down) dir = 2;
 					if (frog.getDirection() == Direction.left) dir = 3;
-					BufferedImage rotated = create(sprites.get(e.spriteID), dir * Math.PI / 2, gc);
+					BufferedImage rotated = create(sprites.get(e.spriteID+3*frogNb), dir * Math.PI / 2, gc);
 					g.drawImage(rotated, pixelByCase * e.absc, pixelByCase * (height - 1 - e.ord), null);
 					frogNb++;
 				} else {

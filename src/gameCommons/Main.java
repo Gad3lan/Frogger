@@ -15,32 +15,17 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	private static int width, height, minSpeedInTimerLoops;
+	private static double defaultDensity;
+	private static IFroggerGraphics graphic;
 
-		//Caractéristiques du jeu
-		int width = 26;
-		int height = 20;
-		int tempo = 100;
-		int minSpeedInTimerLoops = 3;
-		double defaultDensity = 0.1;
-
-
-        String gameMode;
-        System.out.println(
-        		"pour jouer la version:    taper:\n" +
-				"standard                   '0'\n" +
-				"infinie                    '1'\n" +
-				"standard 2 joueurs         '2'\n" +
-				"infinie 2 joueurs          '3'\n");
-        Scanner scanner = new Scanner (System.in);
-        gameMode = scanner.nextLine();
-
+	public static Game start(int gameMode) {
 		//Création de l'interface graphique
-		IFroggerGraphics graphic = new FroggerGraphic(width, height);
+		graphic = new FroggerGraphic(width, height);
 		//Création de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		switch (gameMode) {
-			case "0":
+			case 0:
 				//Création et liason de la grenouille
 				IFrog frog = new Frog(game);
 				game.setFrog(frog);
@@ -50,7 +35,7 @@ public class Main {
 				Environment env = new Environment(game);
 				game.setEnvironment(env);
 				break;
-			case "1":
+			case 1:
 				//Création et liason de la grenouille
 				IFrogInf frogInf = new FrogInf(game);
 				game.setFrog(frogInf);
@@ -60,7 +45,7 @@ public class Main {
 				IEnvInf envInf = new EnvInf(game);
 				game.setEnvironment(envInf);
 				break;
-			case "2":
+			case 2:
 				// Création et liaison de la grenouille des 2 joueurs
 				IFrog frog1 = new Frog(game);
 				IFrog frog2 = new Frog(game);
@@ -73,7 +58,7 @@ public class Main {
 				IEnvironment twoPEnv = new EnvInf(game);
 				game.setEnvironment(twoPEnv);
 				break;
-			case "3":
+			case 3:
 				// Création et liaison de la grenouille des 2 joueurs
 				IFrogInf infFrog1 = new FrogInf(game);
 				IFrogInf infFrog2 = new FrogInf(game);
@@ -89,6 +74,35 @@ public class Main {
 			default:
 				break;
 		}
+		return game;
+	}
+
+	public static void main(String[] args) {
+
+		//Caractéristiques du jeu
+		width = 20;
+		height = 32;
+		minSpeedInTimerLoops = 3;
+		defaultDensity = 0.05;
+		int tempo = 100;
+
+
+        int gameMode;
+        System.out.println(
+        		"pour jouer la version:    taper:\n" +
+				"standard                   '0'\n" +
+				"infinie                    '1'\n" +
+				"standard 2 joueurs         '2'\n" +
+				"infinie 2 joueurs          '3'\n");
+        Scanner scanner = new Scanner (System.in);
+        try {
+	        gameMode = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+        	System.out.println(e);
+        	return;
+        }
+
+		Game game = start(gameMode);
 				
 		//Boucle principale : l'environnement s'actualise tous les tempo milisecondes
 		Timer timer = new Timer(tempo, e -> {

@@ -9,16 +9,20 @@ public class Car {
 	private Case leftPosition;
 	private boolean leftToRight;
 	private boolean isLog;
+	private boolean isLilypad;
 	private int length;
 	private int spriteID;
 
-	Car(Game game, Case leftPosition, boolean leftToRight, boolean isLog) {
+	Car(Game game, Case leftPosition, boolean leftToRight, boolean isLog, boolean isLilypad) {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
 		this.isLog = isLog;
 		if (isLog) {
 			length = game.randomGen.nextInt(4) + 2;
+			if (isLilypad) {
+				length = 1;
+			}
 		} else {
 			length = game.randomGen.nextInt(2) + 1;
 		}
@@ -35,6 +39,7 @@ public class Car {
 				this.spriteID = 4;
 			}
 		}
+		if (isLilypad) this.spriteID = 23;
 		addToGraphics();
 	}
 
@@ -42,11 +47,12 @@ public class Car {
 	 * Deplace la voiture suivant le sens de circulation
 	 */
 	public void move() {
-		if (this.leftToRight) {
-			this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
-		}
-		else {
-			this.leftPosition = new Case(this.leftPosition.absc-1, this.leftPosition.ord);
+		if (!isLilypad) {
+			if (this.leftToRight) {
+				this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
+			} else {
+				this.leftPosition = new Case(this.leftPosition.absc - 1, this.leftPosition.ord);
+			}
 		}
 	}
 
@@ -83,8 +89,11 @@ public class Car {
 			for (int i = 1; i < length - 1; i++) {
 				game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, 16));
 			}
-			game.getGraphic().add(new Element(leftPosition.absc + length-1, leftPosition.ord, 17));
+			game.getGraphic().add(new Element(leftPosition.absc + length - 1, leftPosition.ord, 17));
 		} else {
+			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
+		}
+		if (isLilypad) {
 			game.getGraphic().add(new Element(leftPosition.absc, leftPosition.ord, spriteID));
 		}
 	}

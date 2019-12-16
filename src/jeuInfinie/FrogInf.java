@@ -24,6 +24,7 @@ public class FrogInf extends Frog implements IFrogInf {
             }else{
                 needToMoveDown = true;
             }
+            this.dir = key;
         }else
             super.move(key);
     }

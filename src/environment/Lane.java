@@ -5,7 +5,6 @@ import gameCommons.Game;
 import gameCommons.IFrog;
 import graphicalElements.Element;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Lane {
@@ -17,6 +16,8 @@ public class Lane {
 	private double density;
 	private double slipperyCaseDensity;
 	private boolean leftToRight;
+	private boolean isEmptyLane;
+	private int spriteId;
 	public boolean isRiver;
 	public ArrayList<Integer> splipperyCaseAbs = new ArrayList<>();
 
@@ -26,13 +27,22 @@ public class Lane {
 		this.slipperyCaseDensity = 0.02;
 		this.speed = this.game.randomGen.nextInt(4)+game.minSpeedInTimerLoops;
 		this.leftToRight = this.game.randomGen.nextBoolean();
-		if(isEmptyLane) {
+		if(!isEmptyLane) {
 			isRiver = false;
 			this.density = this.game.defaultDensity;//game.randomGen.nextDouble()*game.defaultDensity;
+			spriteId = 19;
 			if (game.randomGen.nextDouble() < density) {
 				isRiver = true;
+				spriteId = 20;
+				//if (game.randomGen.nextDouble() < 0.2) {
+					//this.isEmptyLane = true;
+					//this.density = 0.2;
+				//}
 			}
 		} else {
+			System.out.println("Empty");
+			isRiver = false;
+			spriteId = 21;
 			this.density = 0;
 		}
 		this.frameCount = 1;
@@ -43,25 +53,23 @@ public class Lane {
 			Case c = new Case(i, ord);
 			if ((isRiver && !isSafe(c)) || (!isRiver && isSafe(c))) {
 				if (game.randomGen.nextDouble() < density) {
-					cars.add(new Car(game, c, leftToRight, isRiver));
+					cars.add(new Car(game, c, leftToRight, isRiver, this.isEmptyLane));
 				}
 			}
 		}
 	}
 
 	public void update() {
-		if (isRiver) {
-			Color color = Color.BLUE;
-			for (int i = 0; i < game.width; i++) {
-				game.getGraphic().add(new Element(i, ord, color));
-			}
+		for (int i = 0; i < game.width; i++)  {
+			game.getGraphic().add(new Element(i, ord, spriteId));
 		}
 		for (int i : splipperyCaseAbs){
-			Color slipperyCaseColor = Color.BLACK;
-			game.getGraphic().add(new Element(i, this.ord, slipperyCaseColor));
+			game.getGraphic().add(new Element(i, this.ord, 22));
 		}
-		for (Car c : cars) {
-			c.addToGraphics();
+		if (!isEmptyLane) {
+			for (Car c : cars) {
+				c.addToGraphics();
+			}
 		}
 		if (frameCount%speed == 0) {
 			for (Car c : cars) {
@@ -74,7 +82,9 @@ public class Lane {
 			}
 		}
 		frameCount++;
-		mayAddCar();
+		if (!isEmptyLane) {
+			mayAddCar();
+		}
 	}
 
 	public boolean isSafe(Case c) {
@@ -107,7 +117,7 @@ public class Lane {
 		if ((!isRiver && isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) ||
 			  isRiver && !isSafe(getFirstCase()) && !isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
-				cars.add(new Car(game, getBeforeFirstCase(), leftToRight, isRiver));
+				cars.add(new Car(game, getBeforeFirstCase(), leftToRight, isRiver, isEmptyLane));
 			}
 		}
 	}

@@ -20,7 +20,7 @@ public class Environment implements IEnvironment {
 		birds = new ArrayList<Bird>();
 		for (int i = 0; i < game.height; i++) {
 			boolean isEmptyLane;
-			isEmptyLane = !(game.randomGen.nextDouble() < 0.2) && i >= 2 && i != game.height - 1;
+			isEmptyLane = (game.randomGen.nextDouble() < 0.2) || i <= 2 || i == game.height - 1;
 			lanes.add(new Lane(this.game, i, isEmptyLane));
 		}
 	}

@@ -97,7 +97,7 @@ public class Bird {
                     break;
             }
         }
-        game.getGraphic().add(new Element(this.pos, Color.YELLOW));
+        game.getGraphic().add(new Element(this.pos, 18));
         return isOnScreen;
     }
 }
